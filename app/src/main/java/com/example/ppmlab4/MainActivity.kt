@@ -29,17 +29,19 @@ import android.content.res.Configuration // para configurar el modo oscuro
 import androidx.compose.material3.Card // para crear tarjetas
 import androidx.compose.material3.CardDefaults // para definir los colores de la tarjeta
 // para listar elementos
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.LazyColumn // para crear una lista de elementos
+import androidx.compose.foundation.lazy.items // para iterar sobre una lista de elementos
 
 
 // para animar elementos hecer que se pueda hacer clic en ellos
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.clickable // para hacer que los elementos sean clicables
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.text.font.FontWeight
+
 
 
 class MainActivity : ComponentActivity() {
@@ -57,16 +59,26 @@ class MainActivity : ComponentActivity() {
                     ) {
                         DogList(
                             listOf(
-                                Pet(R.drawable.dog1, "Dog", "Breed", false),
-                                Pet(R.drawable.dog2, "Dog2", "Breed2", false),
-                                Pet(R.drawable.dog1, "Dog3", "Breed3", false)
+                               Pet(R.drawable.dog1, "Max", "Labrador", false),
+                               Pet(R.drawable.dog2, "Bella", "Beagle", false),
+                               Pet(R.drawable.dog3, "Rocky", "Poodle", false),
+                               Pet(R.drawable.dog4, "Luna", "Bulldog", false),
+                               Pet(R.drawable.dog5, "Charlie", "Boxer", false),
+                               Pet(R.drawable.dog6, "Lucy", "Dachshund", false),
+                               Pet(R.drawable.dog7, "Cooper", "Golden Retriever", false),
+                               Pet(R.drawable.dog8, "Molly", "German Shepherd", false)
                             )
                         )
                     }
 
                 }
 
+
+
+
             }
+
+
         }
     }
 }
@@ -79,8 +91,8 @@ data class Pet (val pictureId: Int, val name: String, val breed: String, var isA
 fun PetCard(pet:Pet){
     var isAdopted by remember { mutableStateOf(pet.isAdopted) }
     if (isAdopted) {pet.isAdopted = true}
-    Card (colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant),
-          modifier = Modifier.fillMaxWidth().padding(8.dp).clickable {if (!isAdopted) isAdopted = true} ) {
+    Card (colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
+          modifier = Modifier.fillMaxWidth().padding(8.dp).clickable {if (!isAdopted) isAdopted = true}, elevation = CardDefaults.cardElevation(6.dp)) {
 
         Row(modifier = Modifier.padding(10.dp)) {
             Image(
@@ -105,7 +117,8 @@ fun PetCard(pet:Pet){
                         text = pet.name,
                         color = MaterialTheme.colorScheme.primary,
                         modifier = Modifier.padding(all = 1.dp),
-                        style = MaterialTheme.typography.titleSmall
+                        style = MaterialTheme.typography.titleLarge,
+                        fontWeight = FontWeight.Bold
 
                     )
 
@@ -149,7 +162,7 @@ fun DogList(pets: List<Pet>) {
 
 @Preview
 @Composable
-fun PreviewPetCard() {
+fun PreviewPetCards() {
     PPMLAB4Theme {
         Scaffold { paddingValues ->
 
@@ -161,14 +174,14 @@ fun PreviewPetCard() {
             ) {
                 DogList(
                     listOf(
-                        Pet(R.drawable.dog1, "Dog", "Breed", false),
-                        Pet(R.drawable.dog2, "Dog2", "Breed2", false),
-                        Pet(R.drawable.dog3, "Dog3", "Breed3", false),
-                        Pet(R.drawable.dog4, "Dog", "Breed", false),
-                        Pet(R.drawable.dog5, "Dog2", "Breed2", false),
-                        Pet(R.drawable.dog6, "Dog3", "Breed3", false),
-                        Pet(R.drawable.dog7, "Dog", "Breed", false),
-                        Pet(R.drawable.dog8, "Dog2", "Breed2", false)
+                        Pet(R.drawable.dog1, "Max", "Labrador", false),
+                        Pet(R.drawable.dog2, "Bella", "Beagle", false),
+                        Pet(R.drawable.dog3, "Rocky", "Poodle", false),
+                        Pet(R.drawable.dog4, "Luna", "Bulldog", false),
+                        Pet(R.drawable.dog5, "Charlie", "Boxer", false),
+                        Pet(R.drawable.dog6, "Lucy", "Dachshund", false),
+                        Pet(R.drawable.dog7, "Cooper", "Golden Retriever", false),
+                        Pet(R.drawable.dog8, "Molly", "German Shepherd", false)
                     )
                 )
             }
